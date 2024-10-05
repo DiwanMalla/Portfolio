@@ -12,7 +12,7 @@ import { GrGallery } from "react-icons/gr";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
 
-export default function Aside() {
+export default function Aside({ asideOpen, handleAsideOpen }) {
   const router = useRouter();
   const [clicked, setClicked] = useState(false);
   const [activeLink, setActiveLink] = useState("/");
@@ -29,7 +29,7 @@ export default function Aside() {
   }, [router.pathname]);
   return (
     <>
-      <aside className="asideleft active">
+      <aside className={asideOpen ? "asideleft active" : "asideleft"}>
         <ul>
           <Link href="/">
             <li className="navactive">
@@ -159,6 +159,7 @@ export default function Aside() {
             </li>
           </Link>
         </ul>
+        <button className="logoutbtn">Logout</button>
       </aside>
     </>
   );

@@ -67,9 +67,7 @@ export default function Blog() {
                 <ReactMarkdown
                   components={{
                     code: ({ node, inline, className, children, ...props }) => {
-                      //for code
                       const match = /language-(\w+)/.exec(className || "");
-
                       if (inline) {
                         return <code>{children}</code>;
                       } else if (match) {
@@ -90,18 +88,20 @@ export default function Blog() {
                               style={{
                                 position: "absolute",
                                 top: "0",
+                                right: "0",
                                 zIndex: "1",
                               }}
                               onClick={() =>
-                                navigator.clipboard.writeText(children)
+                                navigator.clipboard.writeText(text)
                               }
                             >
                               Copy code
                             </button>
                           </div>
                         );
+                      } else {
+                        return <code {...props}>{children}</code>;
                       }
-                      return null;
                     },
                   }}
                 >
@@ -110,6 +110,35 @@ export default function Blog() {
               )}
             />{" "}
           </label>
+        </div>
+        {/*tags*/}
+        <div className="w-100 flex flex-col flex-left mb-2">
+          <label htmlFor="tags">
+            Tags (for multi select press ctrl + mouse left key)
+          </label>
+          <select name="tags" id="tags" multiple>
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="javascript">Javascript</option>
+            <option value="nextjs">Next js</option>
+            <option value="reactjs">React js</option>
+            <option value="database">Database</option>
+          </select>
+        </div>
+        {/*blog status*/}
+        <div className="flex w-100 flex-col flex-left mb-2">
+          <label htmlFor="status">Status</label>
+          <select name="status" id="status">
+            <option value="">No select</option>
+            <option value="draft">Draft</option>
+            <option value="publish">Publish</option>
+          </select>
+        </div>
+
+        <div className="w-100 mb-1">
+          <button type="submit" className="w-100 addwebbtn flex-center">
+            SAVE BLOG
+          </button>
         </div>
       </form>
     </>

@@ -20,10 +20,19 @@ export default async function handle(req, res) {
     res.json(blogDoc);
   }
   if (method === "GET") {
-    if (req.query?.id) {
-      res.json(await Blog.findById)(req.query.id);
-    } else {
-      res.json((await Blog.find()).reverse);
+    try {
+      if (req.query?.id) {
+        // Fetch a specific blog by ID
+        const blog = await Blog.findById(req.query.id);
+        if (!blog) return res.status(404).json({ error: "Blog not found" });
+        return res.status(200).json(blog);
+      } else {
+        // Fetch all blogs and reverse them
+        const blogs = await Blog.find();
+        return res.status(200).json(blogs.reverse());
+      }
+    } catch (error) {
+      return res.status(500).json({ error: "Error fetching blogs" });
     }
   }
   if (method === "PUT") {

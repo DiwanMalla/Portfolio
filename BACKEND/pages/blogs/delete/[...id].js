@@ -46,9 +46,44 @@ export default function DeleteProduct() {
             <span>Delete blog</span>
           </div>
         </div>
-        <div>
-          <div>
-            <svg></svg>
+        <div className="deletesec flex flex-center wh_100">
+          <div className="deletecard">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 64 64"
+              className="w-10 h-10"
+            >
+              <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop
+                    offset="0%"
+                    style={{ stopColor: "#00F260", stopOpacity: 1 }}
+                  />
+                  <stop
+                    offset="100%"
+                    style={{ stopColor: "#0575E6", stopOpacity: 1 }}
+                  />
+                </linearGradient>
+              </defs>
+              <path
+                d="M48 12H36V10a4 4 0 0 0-4-4h-8a4 4 0 0 0-4 4v2H16a4 4 0 0 0-4 4v2h40v-2a4 4 0 0 0-4-4zm-4 4H20v36a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4V16zM24 24h8v20h-8V24zm12 0h8v20h-8V24z"
+                fill="url(#grad1)"
+              />
+              <path d="M20 10h24v2H20z" fill="currentColor" />
+            </svg>
+            <p className="cookieHeading">Are you sure?</p>
+            <p className="cookieDescription">
+              If you delete this website content it will be permanent delete
+              your content.
+            </p>
+            <div className="buttonContainer">
+              <button onClick={deleteBlog} className="acceptButton">
+                Delete
+              </button>
+              <button onClick={goBack} className="declineButton">
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       </div>

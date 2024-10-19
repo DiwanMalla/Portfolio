@@ -10,7 +10,7 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 export default function Projects() {
   //pagination
   const [currentPage, setCurrentPage] = useState(1); //for page 1
-  const [perPage] = useState(7);
+  const [perPage, setPerPage] = useState(4);
 
   //search
   const [searchQuery, setSearchQuery] = useState("");
@@ -76,6 +76,22 @@ export default function Projects() {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
+          <div className="flex gap-2 mb-1">
+            <label htmlFor="perPage">Projects per page:</label>
+            <select
+              id="perPage"
+              value={perPage}
+              onChange={(e) => {
+                setPerPage(Number(e.target.value));
+                setCurrentPage(1); // Reset to page 1 when changing perPage
+              }}
+            >
+              <option value={2}>2</option>
+              <option value={5}>5</option>
+              <option value={10}>10</option>
+              <option value={20}>20</option>
+            </select>
+          </div>
           <table className="table table-styling">
             <thead>
               <tr>
@@ -137,6 +153,41 @@ export default function Projects() {
               )}
             </tbody>
           </table>
+          {/*for pagination*/}
+          {publishedProject.length === 0 ? (
+            ""
+          ) : (
+            <div className="blogpagination">
+              <button
+                onClick={() => paginate(currentPage - 1)}
+                disabled={currentPage === 1}
+                aria-label="Previous Page"
+              >
+                Previous
+              </button>
+              {pageNumbers
+                .slice(
+                  Math.max(currentPage - 3, 0),
+                  Math.min(currentPage + 2, pageNumbers.length)
+                )
+                .map((number) => (
+                  <button
+                    key={number}
+                    onClick={() => paginate(number)}
+                    className={`${currentPage === number ? "active" : ""}`}
+                  >
+                    {number}
+                  </button>
+                ))}
+              <button
+                onClick={() => paginate(currentPage + 1)}
+                disabled={currentPage === pageNumbers.length}
+                aria-label={`Go to page ${currentPage + 1}`}
+              >
+                Next
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </>

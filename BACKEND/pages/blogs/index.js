@@ -49,7 +49,7 @@ export default function Blogs() {
   for (let i = 1; i <= Math.ceil(allblog / perPage); i++) {
     pageNumbers.push(i);
   }
-  console.log(alldata);
+
   return (
     <>
       <div className="blogpage">

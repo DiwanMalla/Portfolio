@@ -51,18 +51,18 @@ export default function Home() {
         const [response, responseProject, responseShop, responseGallery] =
           await Promise.all([
             fetch("/api/blogs"),
-            // fetch("/api/projects"),
+            fetch("/api/projects"),
             // fetch("/api/shops"),
             // fetch("/api/photos"),
           ]);
 
         const data = await response.json();
-        // const dataProject = await responseProject.json();
+        const dataProject = await responseProject.json();
         // const dataShop = await responseShop.json();
         // const dataPhotos = await responseGallery.json();
 
         setBlogsData(data); //assuming data is an array of blogs object
-        // setProjectsData(dataProject);
+        setProjectsData(dataProject);
         // setShopData(dataShop);
         // setPhotosData(dataPhotos);
         setLoading(false); //after fetching data make loading false
@@ -139,11 +139,15 @@ export default function Home() {
           </div>
           <div className="four_card">
             <h2>Total Projects</h2>
-            <span>5</span>
+            <span>
+              {projectsData.filter((dat) => dat.status === "publish").length}
+            </span>
           </div>
           <div className="four_card">
             <h2>Total Products</h2>
-            <span>5</span>
+            <span>
+              {projectsData.filter((dat) => (dat.status = "publish")).length}
+            </span>
           </div>
           <div className="four_card">
             <h2> Gallery Photos</h2>

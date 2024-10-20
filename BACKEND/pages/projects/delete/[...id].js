@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import Head from "next/head";
-import { FaProjectDiagram, FaTrash } from "react-icons/fa"; // Use an appropriate project icon
+import { FaTrash } from "react-icons/fa"; // Use an appropriate project icon
 
 export default function DeleteProject() {
   const router = useRouter();

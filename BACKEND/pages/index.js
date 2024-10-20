@@ -52,19 +52,19 @@ export default function Home() {
           await Promise.all([
             fetch("/api/blogs"),
             fetch("/api/projects"),
-            // fetch("/api/shops"),
-            // fetch("/api/photos"),
+            fetch("/api/shops"),
+            fetch("/api/photos"),
           ]);
 
         const data = await response.json();
         const dataProject = await responseProject.json();
-        // const dataShop = await responseShop.json();
-        // const dataPhotos = await responseGallery.json();
+        const dataShop = await responseShop.json();
+        const dataPhotos = await responseGallery.json();
 
         setBlogsData(data); //assuming data is an array of blogs object
         setProjectsData(dataProject);
-        // setShopData(dataShop);
-        // setPhotosData(dataPhotos);
+        setShopData(dataShop);
+        setPhotosData(dataPhotos);
         setLoading(false); //after fetching data make loading false
       } catch (err) {
         setLoading(false);
@@ -109,6 +109,7 @@ export default function Home() {
       )}, ${Math.floor(Math.random() * 255)}, 0.5)`,
     })),
   };
+  console.log(shopData, photosData);
   return (
     <>
       <Head>
@@ -146,12 +147,12 @@ export default function Home() {
           <div className="four_card">
             <h2>Total Products</h2>
             <span>
-              {projectsData.filter((dat) => (dat.status = "publish")).length}
+              {shopData.filter((dat) => (dat.status = "publish")).length}
             </span>
           </div>
           <div className="four_card">
             <h2> Gallery Photos</h2>
-            <span>5</span>
+            <span>{photosData.length}</span>
           </div>
         </div>
 

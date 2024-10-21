@@ -35,7 +35,34 @@ export default function Home() {
       </Head>
 
       {/* hero section */}
-      <section className="hero"></section>
+      <section className="hero">
+        <div className="intro_text">
+          <svg viewBox="0 0 1320 300">
+            <text
+              x="50%"
+              y="50%"
+              text-anchor="middle"
+              className="animate-stroke"
+            >
+              HI
+            </text>
+          </svg>
+        </div>
+        <div className="container">
+          <div className="flex w-100">
+            <div className="heroinfoleft">
+              <span className="hero_sb_title">I am Diwan Malla</span>
+              <h1 className="hero_title">
+                Full Stack Developer +<br />
+                <span>Ux Designer</span>
+              </h1>
+              <div className="hero_img_box heroimgbox">
+                <img src="/img/me.png" alt="coder" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Services */}
       <section className="services"></section>

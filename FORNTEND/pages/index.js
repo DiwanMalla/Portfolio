@@ -67,7 +67,7 @@ export default function Home() {
               <div className="hero_img_box heroimgbox">
                 <img src="/img/me.png" alt="coder" />
               </div>
-              <div>
+              <div className="lead">
                 I specialize in building responsive and user-friendly
                 applications that enhance user experience. With a keen eye for
                 design and a solid understanding of backend technologies, I
@@ -99,6 +99,13 @@ export default function Home() {
                     </a>
                   </li>
                 </ul>
+              </div>
+            </div>
+            {/*rightside image section*/}
+
+            <div className="heroimageright">
+              <div className="hero_img_box">
+                <img src="/img/me.png" alt="coder" />
               </div>
             </div>
           </div>

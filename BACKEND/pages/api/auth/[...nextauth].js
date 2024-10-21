@@ -3,7 +3,6 @@ import connectToDatabase from "@/lib/mongodb";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export default NextAuth({
-  // Configure one or more authentication providers
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -15,17 +14,25 @@ export default NextAuth({
         const db = await connectToDatabase();
         const collection = db.collection("admin");
 
-        // Check if the user exists
+        // Log the credentials received
+        console.log("Credentials received:", credentials);
+
         const user = await collection.findOne({
-          email: credentials.email, // Correct access to email and password
+          email: credentials.email,
         });
 
-        // Validate the password (in production, this should be hashed)
+        // Log the retrieved user
+        console.log("User retrieved from database:", user);
+
+        // Validate password (ensure you hash the password in production)
         if (user && user.password === credentials.password) {
-          return { id: user._id, email: user.email }; // Return the user if credentials are valid
+          console.log("User authenticated:", user);
+          return { id: user._id, email: user.email };
         }
 
-        // Return null if user data is incorrect
+        console.error(
+          "Authentication failed: User not found or password incorrect."
+        );
         return null;
       },
     }),

@@ -11,6 +11,7 @@ import { RiShoppingCartLine } from "react-icons/ri";
 import { GrGallery } from "react-icons/gr";
 import { RiContactsBook3Line } from "react-icons/ri";
 import { IoSettingsOutline } from "react-icons/io5";
+import { useSession, signOut } from "next-auth/react";
 
 export default function Aside({ asideOpen, handleAsideOpen }) {
   const router = useRouter();
@@ -27,6 +28,10 @@ export default function Aside({ asideOpen, handleAsideOpen }) {
     //update active link status when the page is reloaded
     setActiveLink(router.pathname);
   }, [router.pathname]);
+
+  const { data: session } = useSession();
+  if (session) {
+  }
   return (
     <>
       {" "}
@@ -161,7 +166,9 @@ export default function Aside({ asideOpen, handleAsideOpen }) {
               </li>
             </Link>
           </ul>
-          <button className="logoutbtn">Logout</button>
+          <button onClick={() => signOut()} className="logoutbtn">
+            Logout
+          </button>
         </aside>
       </LoginLayout>
     </>

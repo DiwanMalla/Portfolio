@@ -4,8 +4,10 @@ import { BiExitFullscreen } from "react-icons/bi";
 import { GoScreenFull } from "react-icons/go";
 import { useState } from "react";
 import LoginLayout from "./LoginLayout";
+import { useSession } from "next-auth/react";
 
 export default function Header({ handleAsideOpen }) {
+  const { data: session } = useSession();
   const [isFullScreen, setIsFullScreen] = useState(false);
   const toggleFullScreen = () => {
     if (!document.fullscreenElement) {
@@ -18,6 +20,7 @@ export default function Header({ handleAsideOpen }) {
       });
     }
   };
+
   return (
     <>
       <LoginLayout>
@@ -28,7 +31,7 @@ export default function Header({ handleAsideOpen }) {
               className="headerham flex flex-center"
               onClick={handleAsideOpen}
             >
-              <RiBarChartHorizontalFill />
+              {session ? <RiBarChartHorizontalFill /> : null}
             </div>
           </div>
           <div className="rightnav flex gap-2 ">

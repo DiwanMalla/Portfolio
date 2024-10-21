@@ -73,6 +73,7 @@ export default function Home() {
     };
     fetchData(); //call fetchdata function
   }, []);
+  console.log(Array.isArray(blogsData), blogsData);
 
   //Aggregate data by year and month
   const monthlyData = blogsData

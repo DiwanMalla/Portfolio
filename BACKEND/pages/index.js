@@ -147,7 +147,7 @@ export default function Home() {
           <div className="four_card">
             <h2>Total Products</h2>
             <span>
-              {shopData.filter((dat) => (dat.status = "publish")).length}
+              {shopData.filter((dat) => dat.status === "publish").length}
             </span>
           </div>
           <div className="four_card">

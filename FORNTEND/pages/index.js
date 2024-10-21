@@ -1,4 +1,12 @@
 import Head from "next/head";
+import Link from "next/link";
+import { BiDownload } from "react-icons/bi";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaThreads,
+} from "react-icons/fa6";
 
 export default function Home() {
   // services data
@@ -58,6 +66,39 @@ export default function Home() {
               </h1>
               <div className="hero_img_box heroimgbox">
                 <img src="/img/me.png" alt="coder" />
+              </div>
+              <div>
+                I specialize in building responsive and user-friendly
+                applications that enhance user experience. With a keen eye for
+                design and a solid understanding of backend technologies, I
+                create seamless digital solutions tailored to meet client needs.
+              </div>
+              <div className="hero_btn_box">
+                <Link href="/" download={"/img/me.png"} className="download_cv">
+                  Download CV <BiDownload />
+                </Link>
+                <ul className="hero_social">
+                  <li>
+                    <a href="/">
+                      <FaFacebook />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <FaInstagram />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <FaLinkedin />
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/">
+                      <FaThreads />
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

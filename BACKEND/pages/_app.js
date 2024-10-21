@@ -3,8 +3,11 @@ import ParentComponent from "@/components/ParentComponent";
 import "@/styles/globals.css";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
-export default function App({ Component, pageProps }) {
+import { SessionProvider } from "next-auth/react";
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const [loading, setLoading] = useState(true);
   const router = useRouter(); //use userouter hook
 
@@ -40,10 +43,17 @@ export default function App({ Component, pageProps }) {
         </div>
       ) : (
         <>
-          <ParentComponent appOpen={asideOpen} appAsideOpen={AsideClickOpen} />
+          <SessionProvider session={session}>
+            <ParentComponent
+              appOpen={asideOpen}
+              appAsideOpen={AsideClickOpen}
+            />
+          </SessionProvider>
           <main>
             <div className={asideOpen ? "container" : "container active"}>
-              <Component {...pageProps} />
+              <SessionProvider session={session}>
+                <Component {...pageProps} />
+              </SessionProvider>
             </div>
           </main>
         </>

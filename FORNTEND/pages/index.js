@@ -187,7 +187,25 @@ export default function Home() {
       </section>
 
       {/* Projects */}
-      <section className="projects"></section>
+      <section className="projects">
+        <div className="container">
+          <div className="project_titles">
+            <h2>My Recent Works</h2>
+            <p>
+              I put your ideas and thus your wishes in the form of a unique web
+              project that inspires you and your customers.
+            </p>
+          </div>
+          <div className="project_buttons">
+            <button>ALL</button>
+
+            <button>Website</button>
+            <button>Apps</button>
+            <button>E-Commerce</button>
+            <button>Content</button>
+          </div>
+        </div>
+      </section>
 
       {/* Experience study */}
       <section className="exstudy"></section>

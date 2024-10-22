@@ -79,22 +79,22 @@ export default function Home() {
                 </Link>
                 <ul className="hero_social">
                   <li>
-                    <a href="/">
+                    <a href="https://www.facebook.com/dipin.malla.9/">
                       <FaFacebook />
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="https://www.instagram.com/dipin_malla/?hl=en">
                       <FaInstagram />
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="https://www.linkedin.com/in/diwan-malla/">
                       <FaLinkedin />
                     </a>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="https://www.threads.net/@dipin_malla">
                       <FaThreads />
                     </a>
                   </li>

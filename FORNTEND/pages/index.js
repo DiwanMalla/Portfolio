@@ -109,11 +109,61 @@ export default function Home() {
               </div>
             </div>
           </div>
+          <div className="funfect_area flex flex-sb">
+            <div className="funfect_item">
+              <h3>1+</h3>
+              <h4>
+                Year of
+                <br /> Learning Experience
+              </h4>
+            </div>
+            <div className="funfect_item">
+              <h3>10+</h3>
+              <h4>
+                Projects
+                <br /> Completed
+              </h4>
+            </div>
+            <div className="funfect_item">
+              <h3>6+</h3>
+              <h4>
+                Tools & Technologies
+                <br /> Learned
+              </h4>
+            </div>
+            <div className="funfect_item">
+              <h3>5</h3>
+              <h4>
+                Certifications
+                <br /> Earned
+              </h4>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Services */}
-      <section className="services"></section>
+      <section className="services">
+        <div className="container">
+          <div className="services_titles">
+            <h2>My Quality Services</h2>
+            <p>
+              I put your ideas and thus your wishes in the form of a unique web
+              project that inspires you and your customers.
+            </p>
+          </div>
+          <div className="services_menu">
+            {services.map((service, index) => (
+              <div key={index} className="services_item sactive">
+                <div className="left_s_box">
+                  <span>0{index + 1}</span>
+                  <h3>{service.title}</h3>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Projects */}
       <section className="projects"></section>

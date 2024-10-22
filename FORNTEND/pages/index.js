@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
+import { useState } from "react";
 import { BiDownload } from "react-icons/bi";
 import {
   FaFacebook,
@@ -7,8 +8,17 @@ import {
   FaLinkedin,
   FaThreads,
 } from "react-icons/fa6";
-
+import { GoArrowUpRight } from "react-icons/go";
 export default function Home() {
+  //active service background color
+  const [activeIndex, setActiveIndex] = useState(0);
+  const handleHover = (index) => {
+    setActiveIndex(index);
+  };
+
+  const handleMouseOut = () => {
+    setActiveIndex(0); // set the first item as active when mouse leaves
+  };
   // services data
   const services = [
     {
@@ -154,11 +164,22 @@ export default function Home() {
           </div>
           <div className="services_menu">
             {services.map((service, index) => (
-              <div key={index} className="services_item sactive">
+              <div
+                key={index}
+                className={`services_item ${
+                  activeIndex === index ? `sactive` : ""
+                }`}
+                onMouseOver={() => handleHover(index)}
+                onMouseOut={() => handleMouseOut}
+              >
                 <div className="left_s_box">
                   <span>0{index + 1}</span>
                   <h3>{service.title}</h3>
                 </div>
+                <div className="right_s_box">
+                  <p>{service.description}</p>
+                </div>
+                <GoArrowUpRight />
               </div>
             ))}
           </div>

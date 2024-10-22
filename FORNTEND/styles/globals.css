@@ -23,7 +23,7 @@ body {
 }
 
 .dark {
-  --image-url: url("/img/coderwhite.png");
+  --image-url: url("/img/me.png");
 }
 
 .hero_img_box img {

@@ -1,6 +1,7 @@
 import Spinner from "@/components/Spinner";
 import Head from "next/head";
 import Link from "next/link";
+import skills from "@/components/Skills";
 import { useEffect, useState } from "react";
 import { BiDownload } from "react-icons/bi";
 import {
@@ -10,6 +11,8 @@ import {
   FaThreads,
 } from "react-icons/fa6";
 import { GoArrowUpRight } from "react-icons/go";
+import { LuMedal } from "react-icons/lu";
+import { PiGraduationCap } from "react-icons/pi";
 export default function Home() {
   //active service background color
   const [activeIndex, setActiveIndex] = useState(0);
@@ -297,10 +300,97 @@ export default function Home() {
       </section>
 
       {/* Experience study */}
-      <section className="exstudy"></section>
+      <section className="exstudy">
+        <div className="exstudy">
+          <div className="container flex flex-left flex-sb">
+            <div className="experience">
+              <div className="experience_title flex gap-1">
+                <LuMedal />
+                <h2>My Experience</h2>
+              </div>
+              <div className="exper_cards">
+                <div className="exper_card">
+                  <Link
+                    href="https://github.com/DiwanMalla/TalentTrek_app"
+                    target="_blank"
+                    className="view_project"
+                  >
+                    <span>2024</span>
+                    <h3>TalentTrek App</h3>
+                    <p>
+                      A web application designed to connect talents with
+                      opportunities, featuring user profiles, job listings, and
+                      real-time notifications.
+                    </p>
+                  </Link>
+                </div>
+                <div className="exper_card">
+                  <Link
+                    href="https://github.com/DiwanMalla/note-app"
+                    target="_blank"
+                    className="view_project"
+                  >
+                    <span>2024</span>
+                    <h3>Note App</h3> {/* Project title */}
+                    <p>
+                      A simple note-taking application that allows users to
+                      create, edit, and delete notes, built with React.
+                    </p>{" "}
+                  </Link>
+                </div>
+              </div>
+            </div>
+            <div className="education">
+              {" "}
+              <div className="experience_title flex gap-1">
+                <PiGraduationCap />
+                <h2>My Education</h2>
+              </div>
+              <div className="exper_cards">
+                <div className="exper_card">
+                  <span>Oct 2022 - Oct 2025</span>
+                  <h3>Victoria University</h3>
+                  <p>
+                    Bachelor's degree, Information Technology, Mobile and Web
+                    Application Development
+                  </p>
+                </div>
+                <div className="exper_card">
+                  <span>Jul 2019 - Dec 2021</span>
+                  <h3>Skyrider School</h3>
+                  <p>High School, Science</p>
+
+                  <p>Grade: 3.53/4</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* My Skills */}
-      <section className="myskills"></section>
+      <section className="myskills">
+        <div className="container">
+          <div className="myskills_title">
+            <h2>My Skills</h2>
+            <p>
+              I put your ideas and thus your wishes in the form of a unique web
+              project that inspires you and your customers.
+            </p>
+          </div>
+          <div className="myskils_cards">
+            {skills.map((skill, index) => (
+              <div className="mys_card">
+                <div className="mys_inner">
+                  <img src={skill.img} />
+                  <h3>{skill.level}</h3>
+                </div>
+                <p className="text-center">{skill.name}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* Recent Blogs */}
       <section className="recentblogs"></section>

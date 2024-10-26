@@ -1,6 +1,7 @@
+import Spinner from "@/components/Spinner";
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiDownload } from "react-icons/bi";
 import {
   FaFacebook,
@@ -43,6 +44,46 @@ export default function Home() {
     },
   ];
 
+  const [loading, setLoading] = useState(true);
+  const [allData, setAllData] = useState([]);
+  const [allWork, setAllWork] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [filteredProjects, setFilteredProjects] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [projectResponse, blogsResponse] = await Promise.all([
+          fetch("/api/projects"),
+        ]);
+        const projectData = await projectResponse.json();
+
+        setAllData(projectData);
+      } catch (err) {
+        console.error(`Error fetching data`, err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+  useEffect(() => {
+    //filter projects based on selectioncategory
+    if (selectedCategory === "All") {
+      setFilteredProjects(allData.filter((pro) => pro.status === "publish"));
+    } else {
+      setFilteredProjects(
+        allData.filter(
+          (pro) =>
+            pro.status === "publish" &&
+            pro.projectCategory.includes(selectedCategory)
+        )
+      );
+    }
+  }),
+    [setSelectedCategory, allData];
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
   return (
     <>
       <Head>
@@ -197,12 +238,60 @@ export default function Home() {
             </p>
           </div>
           <div className="project_buttons">
-            <button>ALL</button>
+            <button
+              className={selectedCategory === "All" ? "active" : ""}
+              onClick={() => setSelectedCategory("All")}
+            >
+              ALL
+            </button>
 
-            <button>Website</button>
-            <button>Apps</button>
-            <button>E-Commerce</button>
-            <button>Content</button>
+            <button
+              className={
+                selectedCategory === "Website Development" ? "active" : ""
+              }
+              onClick={() => setSelectedCategory("Website Development")}
+            >
+              Website
+            </button>
+            <button
+              className={selectedCategory === "App Development" ? "active" : ""}
+              onClick={() => setSelectedCategory("App Development")}
+            >
+              Apps
+            </button>
+            <button
+              className={selectedCategory === "E-commerce site" ? "active" : ""}
+              onClick={() => setSelectedCategory("E-commerce site")}
+            >
+              E-Commerce
+            </button>
+            <button
+              className={selectedCategory === "Content" ? "active" : ""}
+              onClick={() => setSelectedCategory("Content")}
+            >
+              Content
+            </button>
+          </div>
+          <div className="projects_cards">
+            {loading ? (
+              <div className="flex flex-center wh_100">
+                <Spinner />
+              </div>
+            ) : filteredProjects.length === 0 ? (
+              <h1 className="w-100 flex flex-center mt-3">No Project Found</h1>
+            ) : (
+              filteredProjects.slice(0, 4).map((pro) => (
+                <Link href="/" key={pro._id} className="procard">
+                  <div className="proimgbox">
+                    <img src={pro.images[0]} alt={pro.title} />
+                  </div>
+                  <div className="procontentbox">
+                    <h2>{pro.title}</h2>
+                    <GoArrowUpRight />
+                  </div>
+                </Link>
+              ))
+            )}
           </div>
         </div>
       </section>

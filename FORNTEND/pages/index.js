@@ -274,7 +274,7 @@ export default function Home() {
           </div>
           <div className="projects_cards">
             {loading ? (
-              <div className="flex flex-center wh_100">
+              <div className="flex flex-center wh_50">
                 <Spinner />
               </div>
             ) : filteredProjects.length === 0 ? (

@@ -1668,8 +1668,7 @@ header.sticky {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
-  padding: 80px 1.5rem;
+  /* gap: 2rem; */
 }
 
 .re_blog {

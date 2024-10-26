@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaThreads,
+} from "react-icons/fa6";
 
 export default function Footer() {
   return (

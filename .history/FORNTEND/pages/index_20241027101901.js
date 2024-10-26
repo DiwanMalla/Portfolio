@@ -106,7 +106,7 @@ export default function Home() {
       minute: "2-digit",
       hour12: true, // Use 12-hour clock
     };
-    return new Intl.DateTimeFormat("en-Us", options).format(date);
+    return new Intl.DateTimeFormat("en-Us", options).format(Date);
   };
   return (
     <>
@@ -437,12 +437,11 @@ export default function Home() {
                   </div>
                   <div className="re_bloginfo">
                     <div className="re_topdate flex gap-1">
-                      <div className="res_date flex gap-1">
+                      <div className="res_date">
                         <FaCalendarDays />
-                        <span>{formatDate(new Date(blog.createdAt))}</span>
+                        <span></span>
                       </div>
-                    </div>{" "}
-                    <h2>{blog.title}</h2>
+                    </div>
                   </div>
                 </Link>
               );

@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaThreads,
+} from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -13,24 +19,11 @@ export default function Footer() {
             <li>
               <Link href="/services">Services</Link>
             </li>
-            <li>
-              <Link href="/services">Works</Link>
-            </li>
-            <li>
-              {" "}
-              <Link href="/services">Resumes</Link>
-            </li>
-            <li>
-              <Link href="/services">Skills</Link>
-            </li>
-            <li>
-              {" "}
-              <Link href="/services">Testinomials</Link>
-            </li>
-            <li>
-              {" "}
-              <Link href="/contact">Contact</Link>
-            </li>
+            <Link href="/services">Works</Link>
+            <Link href="/services">Resumes</Link>
+            <Link href="/services">Skills</Link>
+            <Link href="/services">Testinomials</Link>
+            <Link href="/contact">Contact</Link>
           </div>
           <ul className="hero_social">
             <li>

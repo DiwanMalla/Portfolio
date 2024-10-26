@@ -441,8 +441,8 @@ export default function Home() {
                         <FaCalendarDays />
                         <span>{formatDate(new Date(blog.createdAt))}</span>
                       </div>
-                    </div>{" "}
-                    <h2>{blog.title}</h2>
+                      <h2>{blog.title}</h2>
+                    </div>
                   </div>
                 </Link>
               );

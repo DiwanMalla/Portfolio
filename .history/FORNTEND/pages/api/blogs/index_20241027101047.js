@@ -17,10 +17,10 @@ export default async function handle(req, res) {
       }
     } else if (req.query?.tags) {
       // Fetch blogs by blog tags
-      const blogs = await Blog.find({
+      const blogsByCategory = await Blog.find({
         tags: req.query.tags,
       });
-      res.json(blogs);
+      res.json(blogsByCategory);
     } else if (req.query?.blogCategory) {
       // Fetch blogs by blog category
       const blogsByCategory = await Blog.find({

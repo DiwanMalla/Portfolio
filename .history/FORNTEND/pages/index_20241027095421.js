@@ -5,7 +5,6 @@ import skills from "@/components/Skills";
 import { useEffect, useState } from "react";
 import { BiDownload } from "react-icons/bi";
 import {
-  FaCalendarDays,
   FaFacebook,
   FaInstagram,
   FaLinkedin,
@@ -58,13 +57,10 @@ export default function Home() {
       try {
         const [projectResponse, blogsResponse] = await Promise.all([
           fetch("/api/projects"),
-          fetch("api/blogs"),
         ]);
         const projectData = await projectResponse.json();
-        const blogsData = await blogsResponse.json();
 
         setAllData(projectData);
-        setAllWork(blogsData);
       } catch (err) {
         console.error(`Error fetching data`, err);
       } finally {
@@ -73,7 +69,6 @@ export default function Home() {
     };
     fetchData();
   }, []);
-
   useEffect(() => {
     //filter projects based on selectioncategory
     if (selectedCategory === "All") {
@@ -91,22 +86,6 @@ export default function Home() {
     [setSelectedCategory, allData];
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-  };
-  //function to format the date as '27 oct 2024 14:11pm'
-  const formatDate = (date) => {
-    //check if date is valid
-    if (!date || isNaN(date)) {
-      return ""; //or handle the error as needed
-    }
-    const options = {
-      day: "2-digit",
-      month: "short", // 'short' gives abbreviated month names
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true, // Use 12-hour clock
-    };
-    return new Intl.DateTimeFormat("en-Us", options).format(date);
   };
   return (
     <>
@@ -415,40 +394,7 @@ export default function Home() {
 
       {/* Recent Blogs */}
       <section className="recentblogs">
-        <div className="container">
-          <div className="myskills_title">
-            <h2>Recent Blogs</h2>
-            <p>
-              I put your ideas and thus your wishes in the form of a unique web
-              project that inspires you and your customers.
-            </p>
-          </div>
-          <div className="recent_blogs">
-            {allWork.slice(0, 3).map((blog) => {
-              return (
-                <Link
-                  href={`/blogs/${blog.slug}`}
-                  key={blog._id}
-                  className="re_blog"
-                >
-                  <div className="re_blogimg">
-                    <img src={blog.images[0] || "/img/noimage/png"} />
-                    <span>{blog.blogCategory}</span>
-                  </div>
-                  <div className="re_bloginfo">
-                    <div className="re_topdate flex gap-1">
-                      <div className="res_date flex gap-1">
-                        <FaCalendarDays />
-                        <span>{formatDate(new Date(blog.createdAt))}</span>
-                      </div>
-                    </div>{" "}
-                    <h2>{blog.title}</h2>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </div>
+        <div></div>
       </section>
     </>
   );

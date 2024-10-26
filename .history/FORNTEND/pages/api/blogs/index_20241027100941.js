@@ -15,12 +15,6 @@ export default async function handle(req, res) {
       } else {
         res.status(404).json({ message: "Blog not found" });
       }
-    } else if (req.query?.tags) {
-      // Fetch blogs by blog tags
-      const blogs = await Blog.find({
-        tags: req.query.tags,
-      });
-      res.json(blogs);
     } else if (req.query?.blogCategory) {
       // Fetch blogs by blog category
       const blogsByCategory = await Blog.find({

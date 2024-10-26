@@ -1668,11 +1668,14 @@ header.sticky {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
-  padding: 80px 1.5rem;
+  /* gap: 2rem; */
 }
 
 .re_blog {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrapping */
+  justify-content: space-between; /* Space out items */
+  gap: 2rem;
   position: relative;
   max-width: 400px;
   height: 400px;

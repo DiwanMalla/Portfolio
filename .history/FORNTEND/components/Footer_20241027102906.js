@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { FaFacebook, FaGithub, FaInstagram, FaLinkedin } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaThreads,
+} from "react-icons/fa6";
 
 export default function Footer() {
   return (
@@ -12,23 +18,10 @@ export default function Footer() {
           <div className="ul flex gap-2">
             <li>
               <Link href="/services">Services</Link>
-            </li>
-            <li>
               <Link href="/services">Works</Link>
-            </li>
-            <li>
-              {" "}
               <Link href="/services">Resumes</Link>
-            </li>
-            <li>
               <Link href="/services">Skills</Link>
-            </li>
-            <li>
-              {" "}
               <Link href="/services">Testinomials</Link>
-            </li>
-            <li>
-              {" "}
               <Link href="/contact">Contact</Link>
             </li>
           </div>
@@ -54,9 +47,7 @@ export default function Footer() {
               </a>
             </li>
           </ul>
-          <div className="copyrights">
-            &copy; 2024 All Rights Reserved By <span>Diwan Malla</span>
-          </div>
+          <div className="copyrights">&copy; </div>
         </div>
       </footer>
     </>

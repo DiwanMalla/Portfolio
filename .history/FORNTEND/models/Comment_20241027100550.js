@@ -9,7 +9,6 @@ const CommentSchema = new Schema({
   blog: { type: Schema.Types.ObjectId, ref: "Blog", required: true },
   parent: { type: Schema.Types.ObjectId, ref: "Comment" }, //reference to parent comment
   children: { type: Schema.Types.ObjectId, ref: "Comment" }, //reference to child comment
-  parentName: { type: String },
 });
 export const Comment =
   models.Comment || model("Comment", CommentSchema, "comments");

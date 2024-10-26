@@ -437,12 +437,11 @@ export default function Home() {
                   </div>
                   <div className="re_bloginfo">
                     <div className="re_topdate flex gap-1">
-                      <div className="res_date flex gap-1">
+                      <div className="res_date">
                         <FaCalendarDays />
                         <span>{formatDate(new Date(blog.createdAt))}</span>
                       </div>
-                    </div>{" "}
-                    <h2>{blog.title}</h2>
+                    </div>
                   </div>
                 </Link>
               );

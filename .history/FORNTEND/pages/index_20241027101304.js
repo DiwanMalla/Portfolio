@@ -5,7 +5,6 @@ import skills from "@/components/Skills";
 import { useEffect, useState } from "react";
 import { BiDownload } from "react-icons/bi";
 import {
-  FaCalendarDays,
   FaFacebook,
   FaInstagram,
   FaLinkedin,
@@ -91,22 +90,6 @@ export default function Home() {
     [setSelectedCategory, allData];
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
-  };
-  //function to format the date as '27 oct 2024 14:11pm'
-  const formatDate = (date) => {
-    //check if date is valid
-    if (!date || isNaN(date)) {
-      return ""; //or handle the error as needed
-    }
-    const options = {
-      day: "2-digit",
-      month: "short", // 'short' gives abbreviated month names
-      year: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true, // Use 12-hour clock
-    };
-    return new Intl.DateTimeFormat("en-Us", options).format(date);
   };
   return (
     <>
@@ -433,16 +416,6 @@ export default function Home() {
                 >
                   <div className="re_blogimg">
                     <img src={blog.images[0] || "/img/noimage/png"} />
-                    <span>{blog.blogCategory}</span>
-                  </div>
-                  <div className="re_bloginfo">
-                    <div className="re_topdate flex gap-1">
-                      <div className="res_date flex gap-1">
-                        <FaCalendarDays />
-                        <span>{formatDate(new Date(blog.createdAt))}</span>
-                      </div>
-                    </div>{" "}
-                    <h2>{blog.title}</h2>
                   </div>
                 </Link>
               );

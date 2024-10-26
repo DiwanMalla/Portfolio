@@ -112,14 +112,14 @@ export default function Draft() {
                 </>
               ) : (
                 <>
-                  {publishedBlogs.length === 0 ? (
+                  {draftBlogs.length === 0 ? (
                     <tr>
                       <td colSpan={4} className="text-center">
                         No Blogs Found
                       </td>
                     </tr>
                   ) : (
-                    publishedBlogs.map((blog, index) => (
+                    draftBlogs.map((blog, index) => (
                       <tr key={blog.id}>
                         <td>{indexOfFirstBlog + index + 1}</td>
                         <td>
@@ -150,7 +150,7 @@ export default function Draft() {
             </tbody>
           </table>
           {/*for pagination*/}
-          {draftBlogsBlogs.length === 0 ? (
+          {draftBlogs.length === 0 ? (
             ""
           ) : (
             <div className="blogpagination">

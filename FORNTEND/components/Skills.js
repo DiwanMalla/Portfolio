@@ -21,8 +21,13 @@ const skills = [
     img: "/img/skills/light-prisma.svg",
   },
   { name: "Node.js", level: "Intermediate", img: "/img/skills/node-js.svg" },
-  { name: "Next.js", level: "Intermediate", img: "/img/skills/next-js.svg" },
+  { name: "Next.js", level: "Intermediate", img: "/img/skills/next-js.webp" },
   { name: "Express", level: "Intermediate", img: "/img/skills/express.png" },
+  {
+    name: "Tailwind CSS",
+    level: "Intermediate",
+    img: "/img/skills/tailwind.svg",
+  },
 ];
 
 export default skills;

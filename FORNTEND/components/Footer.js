@@ -49,7 +49,7 @@ export default function Footer() {
               </a>
             </li>
             <li>
-              <a href="https://www.github.com/dipin_malla">
+              <a href="https://www.github.com/diwanmalla">
                 <FaGithub />
               </a>
             </li>

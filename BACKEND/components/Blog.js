@@ -277,6 +277,7 @@ export default function Blog({
             <option value="nextjs">Next js</option>
             <option value="reactjs">React js</option>
             <option value="database">Database</option>
+            <option value="tailwind">Tailwind css</option>
           </select>
         </div>
         {/*blog status*/}

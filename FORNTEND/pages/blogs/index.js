@@ -161,20 +161,136 @@ export default function blogs() {
               <div className="poputegs">
                 <Link href="/blog/category/Next Js" className="pteg">
                   <img src="/img/skills/next-js.webp" alt="Next js" />
+                  <div className="tegs">
+                    <div className="apps">
+                      <span></span>Next Jsx
+                    </div>
+                  </div>
                 </Link>
                 <Link href="/blog/category/Node Js" className="pteg">
                   <img src="/img/skills/node-js.svg" alt="Node js" />
+                  <div className="tegs">
+                    <div className="apps">
+                      <span></span>Node Jsx
+                    </div>
+                  </div>
+                </Link>
+                <Link href="/blog/category/javascript" className="pteg">
+                  <img src="/img/skills/javascript.svg" alt="Javascript" />
+                  <div className="tegs">
+                    <div className="apps">
+                      <span></span>Javascript
+                    </div>
+                  </div>
                 </Link>
                 <Link href="/blog/category/React Js" className="pteg">
-                  <img src="/img/skills/react.svg" alt="React js" />
+                  <img src="/img/skills/react.svg" alt="react" />
+                  <div className="tegs">
+                    <div className="apps">
+                      <span></span>React Js
+                    </div>
+                  </div>
                 </Link>
-                <Link href="/blog/category/Node Js" className="pteg">
-                  <img src="/img/skills/node-js.svg" alt="Node js" />
-                </Link>
-                <Link href="/blog/category/Node Js" className="pteg">
-                  <img src="/img/skills/node-js.svg" alt="Node js" />
+                <Link href="/blog/category/tailwind" className="pteg">
+                  <img src="/img/skills/tailwind.svg" alt="tailwind" />
+                  <div className="tegs">
+                    <div className="apps">
+                      <span></span>Tailwind CSS
+                    </div>
+                  </div>
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+        <section className="latestpostsec ">
+          <div className="container">
+            <div className="border"></div>
+            <div className="latestpostsdata">
+              <div className="fetitle">
+                <h3>Latest Articles:</h3>
+              </div>
+              <div className="latestposts">
+                {loading ? (
+                  <Spinner />
+                ) : (
+                  <>
+                    {publishedData.map((blog) => {
+                      return (
+                        <div className="lpost" key={blog._id}>
+                          <div className="lpostimg">
+                            <Link href={`/blogs/${blog.slug}`}>
+                              <img src={blog.images[0]} alt={blog.title} />
+                            </Link>
+                            <div className="tegs">
+                              {blog.blogCategory.map((cat) => {
+                                return (
+                                  <Link
+                                    href={`/blog/category${cat}`}
+                                    className="ai"
+                                  >
+                                    <span></span>
+                                    {cat}
+                                  </Link>
+                                );
+                              })}
+                            </div>
+                          </div>
+                          <div className="lpostinfo">
+                            <h3>
+                              <Link href={`/blogs/${blog.slug}`}>
+                                {blog.title}
+                              </Link>
+                              <p>{blog.description}</p>
+                              <h4 className="flex">
+                                <img src="/img/me.png" alt="author" />
+                                <span> by Diwan Malla</span>
+                              </h4>
+                            </h3>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </>
+                )}
+              </div>
+            </div>
+            <div>
+              {/*for pagination*/}
+              {publishedData.length === 0 ? (
+                ""
+              ) : (
+                <div className="blogspaginationbtn flex flex-center mt-3 mb-3">
+                  <button
+                    onClick={() => paginate(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    aria-label="Previous Page"
+                  >
+                    Previous
+                  </button>
+                  {pageNumbers
+                    .slice(
+                      Math.max(currentPage - 3, 0),
+                      Math.min(currentPage + 2, pageNumbers.length)
+                    )
+                    .map((number) => (
+                      <button
+                        key={number}
+                        onClick={() => paginate(number)}
+                        className={`${currentPage === number ? "active" : ""}`}
+                      >
+                        {number}
+                      </button>
+                    ))}
+                  <button
+                    onClick={() => paginate(currentPage + 1)}
+                    disabled={currentPage === pageNumbers.length}
+                    aria-label={`Go to page ${currentPage + 1}`}
+                  >
+                    Next
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </section>

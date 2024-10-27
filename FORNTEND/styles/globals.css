@@ -2279,6 +2279,7 @@ header.sticky {
 
 .blogspaginationbtn {
   gap: 1rem;
+  padding: 5rem;
 }
 
 .blogspaginationbtn button {
@@ -2318,6 +2319,7 @@ header.sticky {
 
 .poputegs {
   margin-top: 1rem;
+  margin-bottom: 4rem;
   position: relative;
   display: flex;
   align-items: center;

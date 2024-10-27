@@ -108,7 +108,7 @@ export default function blogs() {
                             return (
                               <SwiperSlide key={blog._id}>
                                 <div className="fpost" key={blog._id}>
-                                  <Link href={`/blogs/${blog.slud}`}>
+                                  <Link href={`/blogs/${blog.slug}`}>
                                     <img
                                       src={blog.images[0]}
                                       alt={blog.title}

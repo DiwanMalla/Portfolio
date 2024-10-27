@@ -75,7 +75,7 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    //filter projects based on selectioncategory
+    // Filter projects based on selectedCategory
     if (selectedCategory === "All") {
       setFilteredProjects(allData.filter((pro) => pro.status === "publish"));
     } else {
@@ -87,8 +87,8 @@ export default function Home() {
         )
       );
     }
-  }),
-    [setSelectedCategory, allData];
+  }, [selectedCategory, allData]); // Corrected dependency array
+
   const handleCategoryChange = (category) => {
     setSelectedCategory(category);
   };
@@ -149,9 +149,10 @@ export default function Home() {
                 create seamless digital solutions tailored to meet client needs.
               </div>
               <div className="hero_btn_box">
-                <Link href="/" download={"/img/me.png"} className="download_cv">
+                <a href="/img/me.png" download className="download_cv">
                   Download CV <BiDownload />
-                </Link>
+                </a>
+
                 <ul className="hero_social">
                   <li>
                     <a href="https://www.facebook.com/dipin.malla.9/">
@@ -235,7 +236,7 @@ export default function Home() {
                   activeIndex === index ? `sactive` : ""
                 }`}
                 onMouseOver={() => handleHover(index)}
-                onMouseOut={() => handleMouseOut}
+                onMouseOut={() => handleMouseOut()}
               >
                 <div className="left_s_box">
                   <span>0{index + 1}</span>
@@ -401,7 +402,7 @@ export default function Home() {
           </div>
           <div className="myskils_cards">
             {skills.map((skill, index) => (
-              <div className="mys_card">
+              <div className="mys_card" key={index}>
                 <div className="mys_inner">
                   <img src={skill.img} />
                   <h3>{skill.level}</h3>

@@ -52,6 +52,7 @@ export default function Project({
       description,
       projectCategory,
       tags,
+      client,
       status,
       livePreview,
     };

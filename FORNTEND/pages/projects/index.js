@@ -91,7 +91,11 @@ export default function projects() {
                 </h1>
               ) : (
                 filteredProjects.map((pro) => (
-                  <Link href="/" key={pro._id} className="procard">
+                  <Link
+                    href={`/projects/${pro.slug}`}
+                    key={pro._id}
+                    className="procard"
+                  >
                     <div className="proimgbox">
                       <img src={pro.images[0]} alt={pro.title} />
                     </div>

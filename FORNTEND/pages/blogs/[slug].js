@@ -517,6 +517,57 @@ const BlogPage = () => {
                     <FiSearch />
                   </button>
                 </div>
+                <div className="rightslugcategory">
+                  <h2>CATEGORIES</h2>
+                  <ul>
+                    {[
+                      "Node js",
+                      "React js",
+                      "Next js",
+                      "CSS",
+                      "Digital Marketing",
+                      "Flutter Dev",
+                      "Database",
+                      "Deployment",
+                    ].map((category) => (
+                      <Link href={`/blogs/category/${category}`}>
+                        <li key={category}>
+                          {category}
+                          <span>
+                            ({" "}
+                            {
+                              alldata.filter((ab) =>
+                                ab.blogCategory.includes(category)
+                              ).length
+                            }
+                            )
+                          </span>
+                        </li>
+                      </Link>
+                    ))}
+                  </ul>
+                </div>
+                <div className="rightrecentpost">
+                  <h2>RECENT POST</h2>
+                  {alldata.slice(0, 3).map((blog) => {
+                    return (
+                      <Link
+                        href={`/blogs/${blog.slug}`}
+                        className="rightrecentp"
+                      >
+                        <img src={blog.images[0]} />
+                        <div>
+                          <h3>{blog.title}</h3>
+                          <h4 className="mt-1">
+                            {blog.tags.map((cat) => {
+                              return <span key={cat}>{cat}</span>;
+                            })}
+                          </h4>
+                        </div>
+                      </Link>
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </div>

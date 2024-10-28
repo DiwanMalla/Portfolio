@@ -33,7 +33,7 @@ const BlogPage = () => {
     setSearchInput(!searchInput);
   };
   const handleSearchClose = () => {
-    setSearchInput(searchInput);
+    setSearchInput(!searchInput);
   };
   const [searchInput, setSearchInput] = useState(false);
   const [blogData, setBlogData] = useState({ blog: {}, comments: [] }); //initialize comments as an empty array
@@ -508,7 +508,11 @@ const BlogPage = () => {
               </div>
               <div className="rightsitedetails">
                 <div className="rightslugsearchbar">
-                  <input type="text" placeholder="Search..." />
+                  <input
+                    type="text"
+                    placeholder="Search..."
+                    onClick={handleSearchOpen}
+                  />
                   <button>
                     <FiSearch />
                   </button>
@@ -516,7 +520,7 @@ const BlogPage = () => {
               </div>
             </div>
           </div>
-          {searchInput ? <Blogsearch onClick={handleSearchOpen} /> : null}
+          {searchInput ? <Blogsearch cls={handleSearchClose} /> : null}
         </div>
       )}
     </>

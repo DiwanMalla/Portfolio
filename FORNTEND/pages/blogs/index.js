@@ -240,13 +240,13 @@ export default function blogs() {
                             <h3>
                               <Link href={`/blogs/${blog.slug}`}>
                                 {blog.title}
-                              </Link>
-                              <p>{blog.description}</p>
-                              <h4 className="flex">
-                                <img src="/img/me.png" alt="author" />
-                                <span> by Diwan Malla</span>
-                              </h4>
+                              </Link>{" "}
                             </h3>
+                            <p>{blog.description}</p>
+                            <h4 className="flex">
+                              <img src="/img/me.png" alt="author" />
+                              <span> by Diwan Malla</span>
+                            </h4>
                           </div>
                         </div>
                       );

@@ -17,6 +17,8 @@ import { a11yDark } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import axios from "axios";
 import { useRouter } from "next/router";
 import useFetchData from "@/hooks/useFetchData";
+import { useEffect, useState } from "react";
+import Spinner from "@/components/Spinner";
 
 const BlogPage = () => {
   const router = useRouter();
@@ -25,38 +27,183 @@ const BlogPage = () => {
   //hook for all data fetching
   const { alldata } = useFetchData("/api/blogs");
 
+  const [blogData, setBlogData] = useState({ blog: {}, comments: [] }); //initialize comments as an empty array
+  const [newComment, setNewComment] = useState({
+    name: "",
+    email: "",
+    title: "",
+    contentpera: "",
+    mainComment: true,
+    parent: null, //track parent comment id for replies
+    parentName: "", //track parent comment name
+  });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [copied, setCopied] = useState(false);
+  const [messageOk, setMessageOk] = useState("");
+  useEffect(() => {
+    const fetchBlogsData = async () => {
+      if (slug) {
+        try {
+          const response = await axios.get(`/api/blogs/${slug}`);
+          setBlogData(response.data);
+          setLoading(false);
+        } catch (error) {
+          setError("Failed to fetch blog data, please try again later.");
+          setLoading(false);
+        }
+      }
+    };
+    fetchBlogsData();
+  }, [slug]); //fetch the data whenever slug changes
+
+  if (loading) {
+    return (
+      <div className="flex flex-center wh_100">
+        <Spinner />
+      </div>
+    );
+  }
+  if (error) {
+    return <p>Error:{error}</p>;
+  }
+
+  const createdAtDate =
+    blogData && blogData.blog.createdAtDate
+      ? new Date(blogData && blogData.blog.createdAtDate)
+      : null;
+  //function to format the date as '27 oct 2024 14:11pm'
+  // Format date function
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    if (isNaN(date)) return "Date unavailable";
+
+    const options = {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return new Intl.DateTimeFormat("en-US", options).format(date);
+  };
+
+  const blogUrl = `http://localhost:3000/blogs/${slug}`;
+
+  const handleCopyUrl = (url) => {
+    navigator.clipboard.writeText(url);
+    setCopied(true);
+    setTimeout(() => {
+      setCopied(false);
+    }, 3000); //reset copied after 3 seconds
+  };
+  const Code = ({ node, inline, className, children, ...props }) => {
+    const match = /language-(\w+)/.exec(className || "");
+  };
   return (
     <>
       <Head>
-        <title>{slug}</title>
+        <title>{blogData.blog.title}</title>
       </Head>
-      <div className="blogslugpage">
-        <div className="container">
-          <div className="blogslugpagecont">
-            <div className="leftsidedetails">
-              <div className="leftbloginfoimg">
-                <img src={alldata} />
-              </div>
-              <div className="slugbloginfopub">
-                <div className="flex gap-2">
-                  <div className="adminslug">
-                    <img src="/img/me.png" />
-                    <span>By Diwan Malla</span>
+      {blogData && (
+        <div className="blogslugpage">
+          <div className="container">
+            <div className="blogslugpagecont">
+              <div className="leftsidedetails">
+                <div className="leftbloginfoimg">
+                  <img
+                    src={blogData.blog.images[0] || `/img/noimage.png`}
+                    alt={blogData && blogData.title}
+                  />
+                </div>
+                <div className="slugbloginfopub">
+                  <div className="flex gap-2">
+                    <div className="adminslug">
+                      <img src={`/img/me.png`} />
+                      <span>By Diwan Malla</span>
+                    </div>
+                    <div className="adminslug">
+                      <SlCalender />
+                      <span>{formatDate(blogData.blog.createdAt)}</span>
+                    </div>
+                    <div className="adminslug">
+                      <CiRead />
+                      <span>
+                        Comments (
+                        {blogData.comments ? blogData.comments.length : 0})
+                      </span>
+                    </div>
                   </div>
-                  <div className="adminslug">
-                    <SlCalender />
-                    <span>pending</span>
-                  </div>
-                  <div className="adminslug">
-                    <CiRead />
-                    <span>Comments (pending)</span>
+                  <div className="shareblogslug ml-3">
+                    {/* Copy URL button */}
+                    <div
+                      title="Copy URL"
+                      onClick={() => handleCopyUrl(blogUrl)}
+                      style={{ cursor: "pointer" }}
+                    >
+                      <BsCopy />
+                      <span>{copied ? "Copied" : ""}</span>
+                    </div>
+
+                    {/* Facebook share button */}
+                    <a
+                      target="_blank"
+                      href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                        blogUrl
+                      )}`}
+                      rel="noopener noreferrer"
+                    >
+                      <RiFacebookFill />
+                    </a>
+
+                    {/* Twitter share button */}
+                    <a
+                      target="_blank"
+                      href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                        `Check out this blog post: ${blogUrl}`
+                      )}&text=${encodeURIComponent(blogData.blog.title)}`}
+                      rel="noopener noreferrer"
+                    >
+                      <FaTwitter />
+                    </a>
+
+                    {/* WhatsApp share button */}
+                    <a
+                      target="_blank"
+                      href={`https://wa.me/?text=${encodeURIComponent(
+                        blogUrl
+                      )}`}
+                      rel="noopener noreferrer"
+                    >
+                      <RiWhatsappFill />
+                    </a>
+
+                    {/* LinkedIn share button */}
+                    <a
+                      target="_blank"
+                      href={`https://www.linkedin.com/shareArticle?text=${encodeURIComponent(
+                        `Check out this blog post: ${blogUrl}`
+                      )}&title=${encodeURIComponent(blogData.blog.title)}`}
+                      rel="noopener noreferrer"
+                    >
+                      <BiLogoLinkedin />
+                    </a>
                   </div>
                 </div>
+                <h1>{blogData.blog.title}</h1>
+                {loading ? (
+                  <Spinner />
+                ) : (
+                  <div className="blogcontent">
+                    <ReactMarkdown></ReactMarkdown>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };

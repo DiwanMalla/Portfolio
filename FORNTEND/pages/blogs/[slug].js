@@ -19,6 +19,7 @@ import { useRouter } from "next/router";
 import useFetchData from "@/hooks/useFetchData";
 import { useEffect, useState } from "react";
 import Spinner from "@/components/Spinner";
+// import handle from "../api/comment";
 
 const BlogPage = () => {
   const router = useRouter();
@@ -68,10 +69,6 @@ const BlogPage = () => {
     return <p>Error:{error}</p>;
   }
 
-  const createdAtDate =
-    blogData && blogData.blog.createdAtDate
-      ? new Date(blogData && blogData.blog.createdAtDate)
-      : null;
   //function to format the date as '27 oct 2024 14:11pm'
   // Format date function
   const formatDate = (dateString) => {
@@ -100,6 +97,54 @@ const BlogPage = () => {
   };
   const Code = ({ node, inline, className, children, ...props }) => {
     const match = /language-(\w+)/.exec(className || "");
+    const [copied, setCopied] = useState(false);
+    const handleCopy = () => {
+      navigator.clipboard.writeText(children);
+      setCopied(true);
+      setTimeout(() => {
+        setTimeout(false);
+      }, 3000); //3 seconds
+    };
+    if (inline) {
+      return <code>{children}</code>;
+    } else if (match) {
+      return (
+        <div style={{ position: "relative" }}>
+          <SyntaxHighlighter
+            style={a11yDark}
+            language={match[1]}
+            PreTag="pre"
+            {...props}
+            codeTagProps={{
+              style: {
+                padding: "0",
+                borderRadius: "5px",
+                overflow: "auto",
+                whiteSpace: "pre-wrao",
+              },
+            }}
+          >
+            {String(children).replace(/\n$/, "")}
+          </SyntaxHighlighter>
+          <button
+            onClick={handleCopy}
+            style={{
+              position: "absolute",
+              top: "0",
+              right: "0",
+              zIndex: "1",
+              background: "#3d3d3d",
+              color: "#fff",
+              padding: "10px",
+            }}
+          >
+            {copied ? "Copied" : "Copy Code"}
+          </button>
+        </div>
+      );
+    } else {
+      return <code className="md-post-code">{children}</code>;
+    }
   };
   return (
     <>
@@ -196,7 +241,12 @@ const BlogPage = () => {
                   <Spinner />
                 ) : (
                   <div className="blogcontent">
-                    <ReactMarkdown></ReactMarkdown>
+                    <ReactMarkdown
+                      remarkPlugins={[remarkGfm]}
+                      components={{ code: Code }}
+                    >
+                      {blogData.blog.description}
+                    </ReactMarkdown>
                   </div>
                 )}
               </div>

@@ -149,11 +149,11 @@ export default function Contacts() {
               )}
             </tbody>
           </table>
-          {/* For pagination */}
+          {/*for pagination*/}
           {currentContacts.length === 0 ? (
             ""
           ) : (
-            <div className="contactpagination">
+            <div className="blogpagination">
               <button
                 onClick={() => paginate(currentPage - 1)}
                 disabled={currentPage === 1}

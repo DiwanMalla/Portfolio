@@ -67,7 +67,7 @@ export default function Contacts() {
           <div className="breadcrumb">
             <GrContactInfo />
             <span>/</span>
-            <span>Blogs</span>
+            <span>Contact</span>
           </div>
         </div>
         <div className="blogstable">

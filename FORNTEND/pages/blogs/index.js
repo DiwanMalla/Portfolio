@@ -11,6 +11,7 @@ import { useState } from "react";
 import useFetchData from "@/hooks/useFetchData";
 import Spinner from "@/components/Spinner";
 import Link from "next/link";
+import Blogsearch from "@/components/Blogsearch";
 
 export default function blogs() {
   //pagination
@@ -23,7 +24,13 @@ export default function blogs() {
     setSearchQuery(e.target.value);
     setCurrentPage(1); // Reset to page 1 on search
   };
-
+  const handleSearchOpen = () => {
+    setSearchInput(!searchInput);
+  };
+  const handleSearchClose = () => {
+    setSearchInput(!searchInput);
+  };
+  const [searchInput, setSearchInput] = useState(false);
   //fetch blog data
   const { alldata = [], loading } = useFetchData("/api/blogs");
 
@@ -79,7 +86,11 @@ export default function blogs() {
                 </p>
                 <div className="subemail">
                   <form className="flex">
-                    <input placeholder="Search blogs here.." type="text" />
+                    <input
+                      onClick={handleSearchOpen}
+                      placeholder="Search blogs here.."
+                      type="text"
+                    />
                     <button>Search</button>
                   </form>
                 </div>
@@ -293,6 +304,7 @@ export default function blogs() {
               )}
             </div>
           </div>
+          {searchInput ? <Blogsearch cls={handleSearchClose} /> : null}
         </section>
       </div>
     </>

@@ -134,21 +134,28 @@ export default function Home() {
         <div className="container">
           <div className="flex w-100">
             <div className="heroinfoleft">
-              <span className="hero_sb_title">I am Diwan Malla</span>
-              <h1 className="hero_title">
+              <span className="hero_sb_title" data-aos="fade-right">
+                I am Diwan Malla
+              </span>
+              <h1 className="hero_title" data-aos="fade-right">
                 Full Stack Developer +<br />
                 <span>Ux Designer</span>
               </h1>
-              <div className="hero_img_box heroimgbox">
+              <div
+                className="hero_img_box heroimgbox"
+                data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000"
+              >
                 <img src="/img/me.png" alt="coder" />
               </div>
-              <div className="lead">
+              <div className="lead" data-aos="fade-up">
                 I specialize in building responsive and user-friendly
                 applications that enhance user experience. With a keen eye for
                 design and a solid understanding of backend technologies, I
                 create seamless digital solutions tailored to meet client needs.
               </div>
-              <div className="hero_btn_box">
+              <div className="hero_btn_box" data-aos="fade-up">
                 <a href="/img/me.png" download className="download_cv">
                   Download CV <BiDownload />
                 </a>
@@ -180,34 +187,39 @@ export default function Home() {
             {/*rightside image section*/}
 
             <div className="heroimageright">
-              <div className="hero_img_box">
+              <div
+                className="hero_img_box"
+                data-aos="flip-left"
+                data-aos-easing="ease-out-cubic"
+                data-aos-duration="2000"
+              >
                 <img src="/img/me.png" alt="coder" />
               </div>
             </div>
           </div>
           <div className="funfect_area flex flex-sb">
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-right">
               <h3>1+</h3>
               <h4>
                 Year of
                 <br /> Learning Experience
               </h4>
             </div>
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-right">
               <h3>10+</h3>
               <h4>
                 Projects
                 <br /> Completed
               </h4>
             </div>
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-left">
               <h3>6+</h3>
               <h4>
                 Tools & Technologies
                 <br /> Learned
               </h4>
             </div>
-            <div className="funfect_item">
+            <div className="funfect_item" data-aos="fade-left">
               <h3>5</h3>
               <h4>
                 Certifications

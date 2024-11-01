@@ -53,7 +53,7 @@ export default function projects() {
                 className={
                   selectedCategory === "Website Development" ? "active" : ""
                 }
-                onClick={() => setSelectedCategory("Website Development")}
+                onClick={() => setSelectedCategory("Web Development")}
               >
                 Website
               </button>
@@ -61,7 +61,7 @@ export default function projects() {
                 className={
                   selectedCategory === "App Development" ? "active" : ""
                 }
-                onClick={() => setSelectedCategory("App Development")}
+                onClick={() => setSelectedCategory("Mobile App Development")}
               >
                 Apps
               </button>

@@ -156,7 +156,11 @@ export default function Home() {
                 create seamless digital solutions tailored to meet client needs.
               </div>
               <div className="hero_btn_box" data-aos="fade-up">
-                <a href="/img/me.png" download className="download_cv">
+                <a
+                  href="/cv/Diwan_Malla_Professional_IT_CV.docx"
+                  download
+                  className="download_cv"
+                >
                   Download CV <BiDownload />
                 </a>
 

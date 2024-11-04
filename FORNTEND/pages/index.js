@@ -322,7 +322,11 @@ export default function Home() {
               <h1 className="w-100 flex flex-center mt-3">No Project Found</h1>
             ) : (
               filteredProjects.slice(0, 4).map((pro) => (
-                <Link href="/" key={pro._id} className="procard">
+                <Link
+                  href={`/projects/${pro.slug}`}
+                  key={pro._id}
+                  className="procard"
+                >
                   <div className="proimgbox">
                     <img src={pro.images[0]} alt={pro.title} />
                   </div>

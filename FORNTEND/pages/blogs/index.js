@@ -80,7 +80,7 @@ export default function blogs() {
                   Welcome to <span>Diwan Blogs!</span>
                 </h1>
                 <p>
-                  I write about we, mobile app development and moern Havascript
+                  I write about we, mobile app development and modern Javascript
                   frameworks. The best articles, links and news related to web
                   and mobile app development
                 </p>

@@ -32,6 +32,9 @@ export default function Shop() {
       <div className="shoppage">
         <div className="shoppagetoptitle">
           <div className="container">
+            <h2>Demo Only</h2>
+            <br />
+            <br />
             <h3>SHOP ONLINE</h3>
             <h2>OUR PRODUCTS</h2>
           </div>
